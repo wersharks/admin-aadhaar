@@ -80,6 +80,24 @@ function uploadimage(){
   });
   }
 
+  //mapclick
+var mapclick = document.getElementById('mapclick');
+mapclick.addEventListener('click', function(e){
+    console.log("Hi");
+});
+
+console.log("ok");
+var mapCenter = [22, 87];
+var map = L.map('map', {center : mapCenter, zoom : 3});
+L.tileLayer('https://{s}.tiles.mapbox.com/v3/{id}/{z}/{x}/{y}.png', {
+    maxZoom: 18,
+    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+    '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+    'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+    id: 'examples.map-i875mjb7',
+    noWrap : true
+}).addTo(map);
+
 
 // const db = getFirestore();
 

@@ -20,9 +20,14 @@
 
 	<!-- CSS Just for demo purpose, don't include it in your project -->
 	<link href="{% static 'css/demo.css' %}" rel="stylesheet" />
+
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
 </head>
 
 <body>
+<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
 <div class="image-container set-full-height" style="background-image: url('{% static 'img/wizard.jpg' %}')">
 
     <!--   Big container   -->
@@ -46,8 +51,9 @@
 
 						<div class="wizard-navigation">
 							<ul>
-	                            <li><a href="#about" data-toggle="tab">About</a></li>
                                 <li><a href="#address" data-toggle="tab">Center</a></li>
+
+	                            <li><a href="#about" data-toggle="tab">About</a></li>
 	                        </ul>
 
 						</div>
@@ -121,8 +127,13 @@
                                             <input name="latLon" type="text" class="form-control" placeholder="242.5-562.7" id="latLon">
                                           </div>
                                     </div>
-                                    
-                                    
+                                    <div class="col-sm-7  col-sm-offset-1">
+                                        <div class="form-group">
+                                        <div id = "map" style = "width:720; height:580px"></div>
+                                        <!-- <label>Map-Picker</label>
+                                           <input name="latLon" type="text" class="form-control" placeholder="242.5-562.7" id="latLon"> -->
+                                         </div>
+                                   </div>
                                 </div>
                             </div>
                         </div>
@@ -155,7 +166,7 @@
 
 
 	<!--   Core JS Files   -->
-    <script src="{% static 'js/firebase.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/script.js' %}" type="text/javascript"></script>
 	<script src="{% static 'js/jquery-2.2.4.min.js' %}" type="text/javascript"></script>
 	<script src="{% static 'js/bootstrap.min.js' %}" type="text/javascript"></script>
 	<script src="{% static 'js/jquery.bootstrap.wizard.js' %}" type="text/javascript"></script>
