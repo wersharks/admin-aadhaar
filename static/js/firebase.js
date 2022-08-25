@@ -29,14 +29,14 @@ let reviews = "";
 let save = document.getElementById("save");
 
 
-var admin = require("firebase-admin");
+// var admin = require("firebase-admin");
 
-var serviceAccount = require("serviceAccountKey.json");
+// var serviceAccount = require("serviceAccountKey.json");
 
-const app = admin.initializeApp({
-credential: admin.credential.cert(serviceAccount),
-databaseURL: "https://sportyme-9927c-default-rtdb.asia-southeast1.firebasedatabase.app"
-});
+// const app = admin.initializeApp({
+// credential: admin.credential.cert(serviceAccount),
+// databaseURL: "https://sportyme-9927c-default-rtdb.asia-southeast1.firebasedatabase.app"
+// });
 
 
 
@@ -58,50 +58,70 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-// const app = initializeApp(firebaseConfig);
-
-
-const db = getFirestore();
-
-const auth = getAuth();
-createUserWithEmailAndPassword(auth, email, password)
-.then((userCredential) => {
-    // Signed in 
-    const user = userCredential.user;
-    // ...
-})
-.catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // ..
-});
-
-async function AddDocument_CustomID(){
-    var ref = doc(db,"operators", name.value);
-
-    const docRef = await setDoc(
-        ref, {
-            operatorID: operatorID,
-            centerUid: centerUid.value,
-            latLong: latLon.value,
-            name: name.value,
-            picture: picture.value,
-            age: age.value,
-            gender: gender.value,
-            phone: phone.value,
-            email: email.value,
-            ratings: ratings,
-            reviews: reviews,
-            isOperatorActive: isOperatorActive,
-            timestamp : Date.now()
-        }
-    )
-    .then(()=>{
-        alert("Operator Added Successfully");
-    })
-    .catch(error =>{
-        alert("Error: " + error);
+const app = initializeApp(firebaseConfig);
+function uploadimage(){
+    var storage = firebase.storage();
+    var file=document.getElementById("wizard-picture").files[0];
+    var storageref=storage.ref("operator/"+file.name);
+    var thisref=storageref.child(file.name).put(file);
+    thisref.on('state_changed',function(snapshot) {
+    console.log('Done');
+   
+    }, function(error) {
+    console.log('Error',error);
+   
+  }, function() {
+    // Uploaded completed successfully, now we can get the download URL
+    thisref.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+      console.log('File available at', downloadURL);
+      document.getElementById("url").value=downloadURL;
+      alert('uploaded successfully');
     });
-}
+  });
+  }
 
-save.addEventListener("click", AddDocument_CustomID);
+
+// const db = getFirestore();
+
+// const auth = getAuth();
+// createUserWithEmailAndPassword(auth, email, password)
+// .then((userCredential) => {
+//     // Signed in 
+//     const user = userCredential.user;
+//     // ...
+// })
+// .catch((error) => {
+//     const errorCode = error.code;
+//     const errorMessage = error.message;
+//     // ..
+// });
+
+// async function AddDocument_CustomID(){
+//     var ref = doc(db,"operators", name.value);
+
+//     const docRef = await setDoc(
+//         ref, {
+//             operatorID: operatorID,
+//             centerUid: centerUid.value,
+//             latLong: latLon.value,
+//             name: name.value,
+//             picture: picture.value,
+//             age: age.value,
+//             gender: gender.value,
+//             phone: phone.value,
+//             email: email.value,
+//             ratings: ratings,
+//             reviews: reviews,
+//             isOperatorActive: isOperatorActive,
+//             timestamp : Date.now()
+//         }
+//     )
+//     .then(()=>{
+//         alert("Operator Added Successfully");
+//     })
+//     .catch(error =>{
+//         alert("Error: " + error);
+//     });
+// }
+
+// save.addEventListener("click", AddDocument_CustomID);

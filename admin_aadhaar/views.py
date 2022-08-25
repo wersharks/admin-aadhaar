@@ -24,33 +24,19 @@ def home(request):
         picture = request.FILES.get('wizard-picture')
         print(name, age, phone, email, gender, centerUid, latLon, picture, pswd)
 
-        user = auth.create_user(
-            email=email,
-            email_verified=True,
-            password=pswd,
-            display_name=name,
-            photo_url=picture,
-            disabled=False)
-        print('Sucessfully created new user: {0}'.format(user.uid))
+        # user = auth.create_user(
+        #     email=email,
+        #     email_verified=True,
+        #     password=pswd,
+        #     display_name=name,
+        #     photo_url=picture,
+        #     disabled=False)
+        # print('Sucessfully created new user: {0}'.format(user.uid))
 
-        data = {
-            "operatorId": user.uid,
-            "centerLocation": latLon,
-            "centerUid": centerUid,
-            "name": name,
-            "picture": picture,
-            "age": age,
-            "gender": gender,
-            "phoneNo": phone,
-            "email": email,
-            "ratings": "0",
-            "reviews": [],
-            "isOperatorActive": True,
-            "timestamp": firestore.SERVER_TIMESTAMP
-        }
+        #
 
         # Add a new doc in collection 'cities' with ID 'LA'
-        db.collection(u'operators').document(user.uid).set(data)
+#        db.collection(u'operators').document(user.uid).set(data)
 
         return render(request, 'index.html')
     return render(request, 'index.html')
