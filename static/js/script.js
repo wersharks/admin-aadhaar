@@ -40,7 +40,7 @@ map.on("locationfound", function (e) {
         e.latlng.lat +
         "&y=" +
         e.latlng.lng +
-        "&radius=5",
+        "&radius=10",
       {
         headers: {
           "Content-Type": "application/json",
@@ -80,6 +80,7 @@ map.on("locationfound", function (e) {
       marker_nearby.addTo(map).on("click", function (e) {
         document.getElementById("latLon").value =
           e.latlng.lat + "-" + e.latlng.lng;
+          document.getElementById("centerUid").value=e.uid;
       });
     });
   };
