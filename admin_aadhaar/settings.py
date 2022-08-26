@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+from corsheaders.defaults import default_headers
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -36,10 +37,12 @@ ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
+    'corsheaders',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'uploadimages',
 ]
 
@@ -52,7 +55,15 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ]
+}
 
 ROOT_URLCONF = 'admin_aadhaar.urls'
 
@@ -74,6 +85,31 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'admin_aadhaar.wsgi.application'
 
+
+CORS_ALLOW_METHODS = [
+'DELETE',
+'GET',
+'OPTIONS',
+'PATCH',
+'POST',
+'PUT',
+]
+
+CORS_ALLOW_HEADERS = [
+'accept',
+'accept-encoding',
+'authorization',
+'content-type',
+'dnt',
+'origin',
+'user-agent',
+'x-csrftoken',
+'x-requested-with',
+]
+
+CORS_ALLOW_HEADERS = list(default_headers) + [
+    "Content-Disposition",
+]
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
@@ -132,3 +168,8 @@ STATICFILES_DIRS = (
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ORIGIN_WHITELIST = [
+    'https://localhost:3000'
+]
