@@ -139,6 +139,7 @@ $(document).ready(function(){
     // Prepare the preview for profile picture
     $("#wizard-picture").change(function(){
         readURL(this);
+        console.log(readURL(this));
     });
 
     $('[data-toggle="wizard-radio"]').click(function(){

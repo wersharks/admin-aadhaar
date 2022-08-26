@@ -60,7 +60,7 @@
                 id="wizardProfile"
               >
                 <!--        You can switch ' data-color="orange" '  with one of the next bright colors: "blue", "green", "orange", "red"          -->
-                <form method="POST">
+                <form method="POST" enctype="multipart/form-data">
                   <div class="wizard-header">
                     <h3>
                       <b>BUILD</b> OPERATOR PROFILE <br />
@@ -72,9 +72,10 @@
 
                   <div class="wizard-navigation">
                     <ul>
+                      <li><a href="#about" data-toggle="tab">About</a></li>
                       <li><a href="#address" data-toggle="tab">Center</a></li>
 
-                      <li><a href="#about" data-toggle="tab">About</a></li>
+                      
                     </ul>
                   </div>
 
@@ -90,7 +91,7 @@
                                 id="wizardPicturePreview"
                                 title=""
                               />
-                              <input type="file" id="wizard-picture" />
+                              <input type="file" name ="wizard-picture" id="wizard-picture" />
                             </div>
                             <h6>Choose Picture</h6>
                           </div>

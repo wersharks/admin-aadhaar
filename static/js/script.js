@@ -80,6 +80,7 @@ map.on("locationfound", function (e) {
       marker_nearby.addTo(map).on("click", function (e) {
         document.getElementById("latLon").value =
           e.latlng.lat + "-" + e.latlng.lng;
+        document.getElementById("centerUID").value = element.uid;
       });
     });
   };
