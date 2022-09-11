@@ -40,7 +40,7 @@ map.on("locationfound", function (e) {
         e.latlng.lat +
         "&y=" +
         e.latlng.lng +
-        "&radius=5",
+        "&radius=20",
       {
         headers: {
           "Content-Type": "application/json",

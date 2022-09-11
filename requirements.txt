@@ -3,3 +3,5 @@ firebase-admin
 gunicorn
 pip
 whitenoise
+django-cors-headers
+django-rest-framework

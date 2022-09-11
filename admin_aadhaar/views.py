@@ -215,9 +215,17 @@ class slotBookings(APIView):
         return Response(dict_obj)
 
     
-class booktype(APIView):
+class OperatorBooking(APIView):
     def get(self, request, format=None):
-        enrollment = db.collection(u'bookings').where(u'bookingType', u'==', 1).stream()
-        for enroll in enrollment:
-            print(f'{enroll.id} => {enroll.to_dict()}')
-        return Response(enroll)
+        oId = "YAwMIUuBiCUQTSC6Q0w8oYodxX62"
+        dict_obj = my_dictionary()
+        bookings = db.collection(u'bookings').where(u'operatorId', u'==', oId).stream()
+        for booking in bookings:
+            dict_obj.add("BookingId", booking.id)
+            dict_obj.add("OperatorId", booking.get("operatorId"))
+            dict_obj.add("Booking Location", booking.get("bookingLocation"))
+            dict_obj.add("SLOT TIME", booking.get("slotTime"))
+            # dict_obj.append(booking.phoneNumber)
+            # dict_obj.append(booking.date)
+
+        return Response(dict_obj)
